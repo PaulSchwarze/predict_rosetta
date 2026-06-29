@@ -1,0 +1,31 @@
+#!/bin/bash
+#SBATCH --job-name fitness_lora
+#SBATCH --time=24:00:00
+#SBATCH --no-requeue
+#SBATCH --chdir /dss/dsshome1/00/go68gar2/Projects/metl_global
+#SBATCH --output /dss/dsshome1/00/go68gar2/Projects/metl_global/logs/slurm_%j_%u_%x.out
+#SBATCH --error  /dss/dsshome1/00/go68gar2/Projects/metl_global/logs/slurm_%j_%u_%x.err
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --cpus-per-task=8
+#SBATCH --mem=80G
+#SBATCH --partition=lrz-hgx-h100-94x4,mcml-hgx-h100-94x4,lrz-hgx-a100-80x4,mcml-hgx-a100-80x4,lrz-dgx-a100-80x8,mcml-dgx-a100-40x8
+#SBATCH --gres=gpu:1
+
+# Slurm writes logs here — must exist before the job starts
+mkdir -p /dss/dsshome1/00/go68gar2/Projects/metl_global/logs
+
+echo "Job started at $(date)"
+echo "Running on node: $(hostname)"
+echo "Job ID: $SLURM_JOB_ID"
+
+srun --container-image /dss/dsshome1/00/go68gar2/nvidia+pytorch+25.04-py3.sqsh \
+     --container-mounts /dss/dsshome1/00/go68gar2/Projects/metl_global:/workspace \
+     --no-container-mount-home \
+     bash -c "
+       pip install lightning torchmetrics transformers sentencepiece tiktoken peft --quiet &&
+       cd /workspace &&
+       python run_training.py
+     "
+
+echo "Job finished at $(date)"

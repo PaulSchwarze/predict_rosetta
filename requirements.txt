@@ -1,0 +1,10 @@
+accelerate
+lightning
+matplotlib
+numpy
+pandas
+peft
+sentencepiece
+torch
+torchmetrics
+transformers

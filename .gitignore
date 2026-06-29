@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+logs/
+checkpoints/
+models/
+*.ckpt
+*.pt
+
+data/*.csv
+*.npy
+*.npz
+
+.env
+.venv/
+venv/
