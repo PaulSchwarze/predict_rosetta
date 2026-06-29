@@ -1,7 +1,5 @@
 # Rosetta Energy Score Prediction
 
-This folder contains a clean project structure for the bachelor thesis code availability repository.
-
 ## Structure
 
 - `src/`: final source code for the protein language model fitness prediction models.
