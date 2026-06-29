@@ -25,6 +25,3 @@ The baseline notebooks are:
 - `notebooks/baselines/05_linear_regression_embeddings.ipynb`
 - `notebooks/baselines/06_MLP_embeddings.ipynb`
 
-## Notes
-
-Large datasets and generated artifacts such as model checkpoints, logs, and embedding arrays are not committed to GitHub. If needed, place them in an external archive and document their location here.
